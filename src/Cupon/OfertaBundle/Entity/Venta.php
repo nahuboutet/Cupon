@@ -17,7 +17,7 @@ class Venta{
     
     /** 
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Cupon\OfertaBundle\Entity\Oferta")
+     * @ORM\ManyToOne(targetEntity="Cupon\UsuarioBundle\Entity\Usuario")
      */    
     protected $usuario;
     
@@ -47,9 +47,9 @@ class Venta{
         return $this->usuario;
     }
     
-    public function __toString() {
-        return ;
-    }
+ #   public function __toString() {
+ #       return ;
+ #   }
     
     
 }

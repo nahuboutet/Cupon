@@ -19,6 +19,9 @@ pagina_estatica:
     pattern: /sitio/{pagina}
     defaults: {_controller: OfertaBundle:Sitio:estatica}
 
+portada:
+    pattern: /
+    defaults: {_controller: OfertaBundle:Default:portada}
 
 
 # Internal routing configuration to handle ESI

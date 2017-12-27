@@ -3,6 +3,7 @@
 namespace Cupon\TiendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cupon\OfertaBundle\Util\Util;
 
 /** @ORM\Entity */
 Class Tienda{
@@ -22,6 +23,8 @@ protected $slug;
 
 /** @ORM\Column(type="string", length=10)  */
 protected $login;
+
+private $passwordEnClaro;
 
 /** @ORM\Column(type="string", length=255)  */
 protected $password;
@@ -58,7 +61,8 @@ protected $ciudad;
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-    
+        $this->slug = Util::getSlug($nombre);
+        
         return $this;
     }
 
@@ -118,6 +122,22 @@ protected $ciudad;
         return $this->login;
     }
 
+    /**
+     * @param string $password
+     */
+    public function setPasswordEnClaro($password)
+    {
+        $this->passwordEnClaro = $password;
+    }
+    /**
+     * @return string
+     */
+    public function getPasswordEnClaro()
+    {
+        return $this->passwordEnClaro;
+    }
+    
+    
     /**
      * Set password
      *

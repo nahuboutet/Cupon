@@ -3,7 +3,7 @@
 namespace Cupon\OfertaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Cupon\OfertaBundle\Util\Util;
 /**
  * Oferta
  *
@@ -132,7 +132,7 @@ class Oferta
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-    
+        $this->slug = Util::getSlug($nombre);
         return $this;
     }
 
@@ -228,6 +228,30 @@ class Oferta
         return $this;
     }
 
+     /**
+     * @param string $rutaFoto
+     */
+    public function setRutaFoto($rutaFoto)
+    {
+        $this->rutaFoto = $rutaFoto;
+    }
+    
+    
+      /**
+     * @param \DateTime $fechaExpiracion
+     */
+    public function setFechaExpiracion($fechaExpiracion)
+    {
+        $this->fechaExpiracion = $fechaExpiracion;
+    }
+    /**
+     * @return \DateTime
+     */
+    public function getFechaExpiracion()
+    {
+        return $this->fechaExpiracion;
+    }
+    
     /**
      * Get foto
      *

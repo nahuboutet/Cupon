@@ -3,7 +3,7 @@
 namespace Cupon\UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Usuario
  *
@@ -48,6 +48,13 @@ class Usuario
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
+
+    
+        /**
+     * @Assert\NotBlank(groups={"registro"})
+     * @Assert\Length(min = 6)
+     */
+    private $passwordEnClaro;
 
     /**
      * @var string
@@ -100,7 +107,7 @@ class Usuario
 
     /**
      *
-     * @ORM\ManyToOne(TargetEntity="Cupon\CiudadBundle\Entity\Ciudad")
+     * @ORM\ManyToOne(targetEntity="Cupon\CiudadBundle\Entity\Ciudad")
      */
     private $ciudad;
 
@@ -197,6 +204,15 @@ class Usuario
         return $this;
     }
 
+    
+     /**
+     * @param string $password
+     */
+    public function setPasswordEnClaro($password)
+    {
+        $this->passwordEnClaro = $password;
+    }
+    
     /**
      * Get password
      *
