@@ -77,6 +77,14 @@ class Oferta
      */
     private $fecha_publicacion;
 
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_expiracion", type="datetime")
+     */
+     private $fechaExpiracion;
+
+    
     /**
      * @var integer
      *
