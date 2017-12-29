@@ -22,6 +22,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        ciudad_por_defecto: %cupon.ciudad_por_defecto%
 
 # Assetic Configuration
 assetic:
@@ -38,14 +40,22 @@ assetic:
 
 # Doctrine Configuration
 doctrine:
+#    dbal:
+#        driver:   pdo_mysql
+#        host:     localhost
+#        port:     ~
+#        dbname:   cupon
+#        user:     cupon
+#        password: cupon
+#        charset:  UTF8
     dbal:
-        driver:   pdo_mysql
-        host:     localhost
-        port:     ~
-        dbname:   cupon
-        user:     cupon
-        password: cupon
-        charset:  UTF8
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset: UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -58,3 +68,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Parámetros globales del contenedor de dependencias
+parameters: 
+    cupon.ciudad_por_defecto = '1'

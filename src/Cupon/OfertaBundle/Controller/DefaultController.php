@@ -3,8 +3,8 @@
 namespace Cupon\OfertaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 class DefaultController extends Controller
 {
@@ -13,15 +13,21 @@ class DefaultController extends Controller
    //     return $this->render('OfertaBundle:Default:ayuda.html.twig');
    // }
     
+    
+    /**
+    * Muestra la portada del sitio web
+    *
+    * @param string $ciudad El slug de la ciudad activa en la aplicación
+    */   
     public function portadaAction($ciudad){
                
-        if(null == $ciudad){
-            $ciudad = $this->container
-                           ->getParameter('cupon.ciudad_por_defecto');
-            
-            return new RedirectResponse($this->generateUrl('portada', array('ciudad'=> $ciudad)));
-        }
-        
+//        if(null == $ciudad){
+//            $ciudad = $this->container
+//                           ->getParameter('cupon.ciudad_por_defecto');
+//            
+//            return new RedirectResponse($this->generateUrl('portada', array('ciudad'=> $ciudad)));
+//        }
+//        
         $em = $this->getDoctrine()->getEntityManager();
         
         $oferta = $em->getRepository('OfertaBundle:Oferta')->findBy(array(
