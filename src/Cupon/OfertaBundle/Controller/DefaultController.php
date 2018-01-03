@@ -4,6 +4,7 @@ namespace Cupon\OfertaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException; 
 
 
 class DefaultController extends Controller
@@ -13,21 +14,16 @@ class DefaultController extends Controller
    //     return $this->render('OfertaBundle:Default:ayuda.html.twig');
    // }
     
-    
-    /**
-    * Muestra la portada del sitio web
-    *
-    * @param string $ciudad El slug de la ciudad activa en la aplicación
-    */   
     public function portadaAction($ciudad){
-               
-//        if(null == $ciudad){
-//            $ciudad = $this->container
-//                           ->getParameter('cupon.ciudad_por_defecto');
-//            
-//            return new RedirectResponse($this->generateUrl('portada', array('ciudad'=> $ciudad)));
-//        }
-//        
+        
+        
+        if(null == $ciudad){
+            $ciudad = $this->container
+                           ->getParameter('cupon.ciudad_por_defecto');
+            return new RedirectResponse($this->generateUrl('portada',array('ciudad'=>$ciudad)));
+        }
+        
+        
         $em = $this->getDoctrine()->getEntityManager();
         
         $oferta = $em->getRepository('OfertaBundle:Oferta')->findBy(array(
@@ -36,10 +32,11 @@ class DefaultController extends Controller
         ));
         
         if(!$oferta){
-            throw $this->createNotFoundException('No se ha encontrado la oferta del dia en la ciudad seleccionada');
+            throw $this->createNotFoundException('No se ha encontrado oferta del dia para esta ciudad');
         }
         
-        return $this->render('OfertaBundle:Default:portada.html.twig',array('oferta'=>$oferta));
+        
+        return $this->render('OfertaBundle:Default:portada.html.twig',array('oferta'=>$oferta[0]));
         
     }
 }
