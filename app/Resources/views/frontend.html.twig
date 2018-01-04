@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% set ciudadSeleccionada = app.request.attributes.has('ciudad')
+        ? app.request.attributes.get('ciudad')
+        : ciudad_por_defecto
+%}
+
+
+{% block body %}
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8" /> 
+        <title> {% block title %} {% endblock %} | Cupon </title>
+    </head>
+    
+        <body id="{% block id '' %}">
+            <div id="contenedor">
+                <header> 
+                    ##HEADER ##
+                </header> 
+                
+                <article>                
+                    {% block article %} {% endblock %}
+                </article>
+                    
+                <aside>
+                    {% block aside %} {% endblock %}
+                </aside>
+
+                <footer>
+                    ##FOOTER##
+                </footer>
+                
+                
+            </div>
+        </body>
+
+</html>    
+    
+    
+

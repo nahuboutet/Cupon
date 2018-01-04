@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html>
-    
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Portada | Cupon</title>
-</head>
-<body id="portada" >
-    <div id="contenedor">
-        <header>
-            <h1><a href="{{path('_portada')}}">CUPÓN</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="{{path('_portada')}}">Ofertas del Día</a></li>
-                    <li><a href="#">Ofertas del recientes</a></li>
-                    <li><a href="#">Ofertas del mes</a></li>                        
-                </ul>    
-            </nav>
-        </header>
-        
-        <article class="oferta">
+{% extends '::frontend.html.twig' %}
+
+{% block title %} Cupon, cada día ofertas increíbles en tu
+ciudad con descuentos de hasta el 90% {% endblock %}
+
+{% block id 'portada'%}
+
+{% block article %} 
+    <article class="oferta">
             <section class="descripcion">
                 <h1><a href="#">{{ oferta.nombre }}</a>
                     {{ oferta.descripcion }}
@@ -67,17 +55,40 @@
                 <h2>Sobre la tienda</h2>
                 {{ oferta.tienda.descripcion }}
             </section>
-                    
-        </article>   
+            
+        </article> 
+{% endblock %}
 
-                    
-        <aside>
+
+{% block aside %} 
+     <aside>
             ## FORMULARIO DE LOGIN ##        
             <section id="nosotros">
                 <h2>Sobre nosotros</h2>
                 <p>Lorem ipsum dolor sit amet...</p>
             </section>
-        </aside>           
+        </aside> 
+{% endblock %}
+
+
+
+<body id="portada" >
+    <div id="contenedor">
+        <header>
+            <h1><a href="{{path('_portada')}}">CUPÓN</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="{{path('_portada')}}">Ofertas del Día</a></li>
+                    <li><a href="#">Ofertas del recientes</a></li>
+                    <li><a href="#">Ofertas del mes</a></li>                        
+                </ul>    
+            </nav>
+        </header>
+        
+          
+
+                    
+                 
         
          <footer>
             &copy; {{'now' | date('Y')}} - Cupon
